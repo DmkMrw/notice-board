@@ -21,10 +21,25 @@ else dbUri = 'mongodb://localhost:27017/adsDB';
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
-app.use(cors());
+if(process.env.NODE_ENV !== 'production') {
+  app.use(
+    cors({
+      origin: ['http://localhost:3000'],
+      credentials: true,
+    })
+  );
+};
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(session({ store: MongoStore.create({ mongoUrl: dbUri }), secret: 'xyz567', resave: false, saveUninitialized: false }));
+app.use(session({
+  store: MongoStore.create({ mongoUrl: dbUri }),
+  secret: 'xyz567',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV == 'production',
+  },
+}));
 
 
 app.use('/api', adsRoutes);

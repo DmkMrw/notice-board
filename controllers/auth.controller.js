@@ -34,9 +34,11 @@ exports.login = async (req, res) => {
         res.status(400).send({ message: 'Login or password are incorrect' });
       } else {
         if (bcrypt.compareSync(password, user.password)) {
-        req.session.login = user.login;
-        req.session.save();
-        res.status(200).json({ message: 'You are logged as ' + user.login });
+          req.session.login = user.login;
+          req.session.id = user._id;
+          // req.session = { user };
+          // req.session.save();
+          res.status(200).json({ message: 'You are logged as ' + req.session.login  });
         }
         else {
         res.status(400).send({ message: 'Login or password are incorrect' });
@@ -50,9 +52,18 @@ exports.login = async (req, res) => {
   };
 };
 
+exports.logout = async (req, res) => {
+  try {
+    req.session.destroy();
+    res.status(200).send({ message: 'User logged out' });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  };
+};
+
 exports.getUser = async (req, res) => {
 
 // req.session.login checked in middleware
 
-  res.send({message : 'Authorized as '+ req.session.login})
+  res.send({ message: `Authorized as ${req.session.login}, id: ${req.session.id}` });
 };
