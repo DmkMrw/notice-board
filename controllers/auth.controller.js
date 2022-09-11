@@ -6,13 +6,13 @@ exports.register = async (req, res) => {
 
     const { login, password, phoneNumber } = req.body;
 
-    if (login && typeof login === 'string' && password && typeof password === 'string' && phoneNumber && typeof phoneNumber === 'number') {
+    if (login && typeof login === 'string' && password && typeof password === 'string' && phoneNumber) {
 
       const userWithLogin = await User.findOne({ login });
       if (userWithLogin) {
         return res.status(409).send({ message: 'User with this login already exists' });
       }
-      const user = new User({login, password: await bcrypt.hash(password, 10)}, phoneNumber);
+      const user = new User({login, password: await bcrypt.hash(password, 10)});
       await user.save();
       res.status(201).json({ message: 'User created ' + user.login });
     } else {
@@ -34,8 +34,9 @@ exports.login = async (req, res) => {
         res.status(400).send({ message: 'Login or password are incorrect' });
       } else {
         if (bcrypt.compareSync(password, user.password)) {
-          res.status(200).send({ message: 'Login successful' });
-          req.session.login = user.login;
+        req.session.login = user.login;
+        req.session.save();
+        res.status(200).json({ message: 'You are logged as ' + user.login });
         }
         else {
         res.status(400).send({ message: 'Login or password are incorrect' });
@@ -49,11 +50,10 @@ exports.login = async (req, res) => {
   };
 };
 
-// exports.user = async (req, res) => {
-//   if (req.session.login) {
-//     res.send({ login: req.session.login })
-
-//   } else {
-//     res.status(401).send({message: 'You are not authorized'})
-//   }
-// }
+exports.getUser = async (req, res) => {
+  if (req.session.login) {
+    res.send({ message: 'Authorized as ' + req.session.login })
+  } else {
+    res.status(401).send({ message: 'You are not authorized' })
+  };
+};

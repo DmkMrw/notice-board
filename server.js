@@ -9,18 +9,6 @@ const authRoutes = require('./routes/auth.routes');
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(session({ secret: 'xyz567',  store: MongoStore.create(mongoose.connection), resave: false, saveUninitialized: false}));
-
-app.use('/api', adsRoutes);
-app.use('/auth', authRoutes);
-
-app.use((req, res) => {
-  res.status(404).send({ message: 'Not found...' });
-})
-
 const NODE_ENV = process.env.NODE_ENV;
 let dbUri = '';
 
@@ -32,6 +20,19 @@ else dbUri = 'mongodb://localhost:27017/adsDB';
 
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(session({ store: MongoStore.create({ mongoUrl: dbUri }), secret: 'xyz567', resave: false, saveUninitialized: false }));
+
+
+app.use('/api', adsRoutes);
+app.use('/auth', authRoutes);
+
+app.use((req, res) => {
+  res.status(404).send({ message: 'Not found...' });
+})
 
 db.once('open', () => {
   console.log('Connected to the database');
