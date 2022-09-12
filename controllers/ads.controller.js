@@ -1,4 +1,6 @@
 const Ads = require('../models/ad.model');
+const getImageFileType = require('../utils/getImageFileType');
+const fs = require('fs');
 
 exports.getAll = async (req, res) => {
   try {
@@ -24,14 +26,22 @@ exports.getById = async (req, res) => {
 exports.postAds = async (req, res) => {
 
   try {
-  const { title, content, date, photo, price, location, info } = req.body;
-    const newAds = new Ads({ title: title, content:content, date: date, photo: photo, price: price, location: location, info: info});
-    await newAds.save();
-    res.json({ message: 'OK' });
+    const { title, description, date, price, location, info } = req.body;
+    const fileType = req.file ? await getImageFileType(req.file) : 'unknown';
 
+    if (title && description && date && req.file && ['image/png', 'image/jpeg', 'image/gif'].includes(fileType) && price && location && info) {
+      const newAds = new Ads({ title, description, date, image: req.file.filename, price, location, info});
+      await newAds.save();
+      res.json({ message: 'OK' });
+    } else {
+      if (req.file) {
+        fs.unlinkSync(req.file.path);
+      }
+      res.status(400).send({ message: 'Bad request' });
+    }
   } catch(err) {
     res.status(500).json({ message: err });
-  }
+  };
 };
 
 exports.deleteAds = async (req, res) => {
@@ -50,13 +60,22 @@ exports.deleteAds = async (req, res) => {
 };
 
 exports.putAds = async (req, res) => {
-  const { title, content, date, photo, price, location, info } = req.body;
+  const { title, description, date, price, location, info } = req.body;
 
   try {
     const ad = await Ads.findById(req.params.id);
     if(ad) {
-      await Ads.updateOne({ _id: req.params.id }, { $set: { title: title, content: content, date: date, photo: photo, price: price, location: location, info: info }});
-      res.json(ad);
+      ad.title = title;
+      ad.description = description;
+      ad.price = price;
+      ad.date = date;
+      ad.location = location;
+      ad.info = info;
+      if (req.file) {
+        ad.image = req.file.filename;
+      }
+      const updatedAd = await ad.save();
+      res.json(updatedAd);
     }
     else res.status(404).json({ message: 'Not found...' });
   }

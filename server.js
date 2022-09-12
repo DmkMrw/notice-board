@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const path = require('path');
 require('dotenv').config();
 
 const adsRoutes = require('./routes/ads.routes');
@@ -46,6 +47,9 @@ app.use(session({
 app.use('/api', adsRoutes);
 app.use('/auth', authRoutes);
 
+app.use(express.static(path.join(__dirname, '/client/build')));
+app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/uploads/')));
 app.use((req, res) => {
   res.status(404).send({ message: 'Not found...' });
 })
