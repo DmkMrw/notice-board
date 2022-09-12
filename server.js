@@ -51,7 +51,7 @@ app.use((req, res) => {
 })
 
 db.once('open', () => {
-  console.log('Connected to the database' + process.env.SECRET_KEY);
+  console.log('Connected to the database');
 });
 db.on('error', err => console.log('Error ' + err));
 
