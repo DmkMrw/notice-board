@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+require('dotenv').config();
 
 const adsRoutes = require('./routes/ads.routes');
 const authRoutes = require('./routes/auth.routes');
@@ -33,7 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
   store: MongoStore.create({ mongoUrl: dbUri }),
-  secret: 'xyz567',
+  secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -50,7 +51,7 @@ app.use((req, res) => {
 })
 
 db.once('open', () => {
-  console.log('Connected to the database');
+  console.log('Connected to the database' + process.env.SECRET_KEY);
 });
 db.on('error', err => console.log('Error ' + err));
 
