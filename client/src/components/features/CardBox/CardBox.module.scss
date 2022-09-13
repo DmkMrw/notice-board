@@ -1,0 +1,55 @@
+@import '../../../styles/settings.scss';
+
+.card_wrapper {
+  background-color: darken($color-dark, 3%);
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  width: 20%;
+};
+
+.img_wrapper {
+  display: flex;
+  justify-content: center;
+  height: 180px;
+};
+
+.img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.description_all {
+  margin: 25px;
+};
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+};
+
+.description {
+  line-height: 20px;
+};
+
+.location {
+  display: block;
+  margin-bottom: 20px;
+};
+
+.button {
+  background-color: $color-button;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-button-hover;
+  }
+}
+
