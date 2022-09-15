@@ -4,26 +4,30 @@
   background-color: darken($color-dark, 3%);
   border: 1px solid #aaa;
   border-radius: 5px;
-  width: 20%;
+  width: 250px;
 };
 
 .img_wrapper {
   display: flex;
   justify-content: center;
-  height: 180px;
+  height: 200px;
+  margin-top: 25px;
+
 };
 
-.img {
-  height: 100%;
-  width: 100%;
+img {
+  max-height: 100%;
+  max-width: 100%;
   object-fit: cover;
-}
+  border-radius: 5px;
+};
 
 .description_all {
   margin: 25px;
+  position: relative;
 };
 
-.price {
+.title {
   font-size: 24px;
   font-weight: bold;
   letter-spacing: 1.5px;
@@ -36,6 +40,17 @@
 .location {
   display: block;
   margin-bottom: 20px;
+  font-weight: bold;
+  span {
+    font-weight: normal;
+  }
+};
+
+.price {
+  font-size: 20px;
+  position: absolute;
+  right: 0;
+  bottom: 6px;
 };
 
 .button {
@@ -43,10 +58,10 @@
   border: none;
   border-radius: 5px;
   color: white;
-  padding: 15px 30px;
+  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
   &:hover {
     background-color: $color-button-hover;
