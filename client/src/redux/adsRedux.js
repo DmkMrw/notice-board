@@ -30,7 +30,7 @@ export const searchAd = (searchPhrase) => ({
 
 export const loadAdsRequest = () => {
   return (dispatch) => {
-    fetch(API_URL + '/ads')
+    fetch(API_URL + '/api/ads')
 
       .then((res) => res.json())
 

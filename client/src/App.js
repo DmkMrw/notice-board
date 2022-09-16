@@ -10,6 +10,7 @@ import Container from './components/Container/Container';
 import Home from './components/pages/Home/Home';
 import AdPage from './components/pages/AdPage/AdPage';
 import NotFound from './components/pages/NotFound/NotFound';
+import Register from './components/pages/Register/Register';
 
 
 
@@ -26,6 +27,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/ad/:adId" element={<AdPage/>} />
+          <Route path="/register" element={<Register/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
