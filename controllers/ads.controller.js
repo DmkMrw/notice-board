@@ -26,11 +26,11 @@ exports.getById = async (req, res) => {
 exports.postAds = async (req, res) => {
 
   try {
-    const { title, description, date, price, location, info } = req.body;
+    const { title, description, date, price, location, user, phone} = req.body;
     const fileType = req.file ? await getImageFileType(req.file) : 'unknown';
 
-    if (title && description && date && req.file && ['image/png', 'image/jpeg', 'image/gif'].includes(fileType) && price && location && info) {
-      const newAds = new Ads({ title, description, date, image: req.file.filename, price, location, info});
+    if (title && description && date && req.file && ['image/png', 'image/jpeg', 'image/gif'].includes(fileType) && price && location && user) {
+      const newAds = new Ads({ title, description, date, image: req.file.filename, price, location, user, phone});
       await newAds.save();
       res.json({ message: 'OK' });
     } else {
@@ -60,7 +60,7 @@ exports.deleteAds = async (req, res) => {
 };
 
 exports.putAds = async (req, res) => {
-  const { title, description, date, price, location, info } = req.body;
+  const { title, description, date, price, location, user, phone } = req.body;
 
   try {
     const ad = await Ads.findById(req.params.id);
@@ -70,7 +70,8 @@ exports.putAds = async (req, res) => {
       ad.price = price;
       ad.date = date;
       ad.location = location;
-      ad.info = info;
+      ad.user = user;
+      ad.phone = phone;
       if (req.file) {
         ad.image = req.file.filename;
       }
