@@ -3,10 +3,12 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadAdsRequest } from './redux/adsRedux';
 
+
 // import routes
 import NavBar from './components/NavBar/NavBar';
 import Container from './components/Container/Container';
 import Home from './components/pages/Home/Home';
+import AdPage from './components/pages/AdPage/AdPage';
 import NotFound from './components/pages/NotFound/NotFound';
 
 
@@ -17,14 +19,15 @@ const App = () => {
 
   useEffect(() => dispatch(loadAdsRequest()), [dispatch]);
 
-  console.log('useEffect(() => dispatch(loadAdsRequest()), [dispatch]);', useEffect(() => dispatch(loadAdsRequest()), [dispatch]));
-
   return (
     <>
       <NavBar />
       <Container>
-        <Home />
-        <NotFound />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/ad/:adId" element={<AdPage/>} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </Container>
     </>
   );

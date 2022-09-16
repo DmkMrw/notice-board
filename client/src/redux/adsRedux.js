@@ -34,7 +34,7 @@ export const loadAdsRequest = () => {
 
       .then((res) => res.json())
 
-      .then((ads) => dispatch(updateAds(ads), console.log('ads', ads)));
+      .then((ads) => dispatch(updateAds(ads)));
   };
 };
 

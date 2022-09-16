@@ -1,7 +1,6 @@
 import styles from './CardBox.module.scss';
-import logo from '../../../images/logo192.png';
-import test from '../../../images/test.jpg';
 import { IMGS_URL } from '../../../config';
+import { Link } from 'react-router-dom';
 
 function CardBox({ description, info, location, price, title, _id, image }) {
 
@@ -16,7 +15,9 @@ function CardBox({ description, info, location, price, title, _id, image }) {
           <p className={styles.description}>{description}</p>
           <span className={styles.location}>Location: <span>{location}</span></span>
           <span className={styles.price}>${price}</span>
-          <button className={styles.button}>Read More</button>
+          <Link to={'ad/' + _id}>
+            <button className={styles.button}>Read More</button>
+          </Link>
         </div>
       </div>
     </>

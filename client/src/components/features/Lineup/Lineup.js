@@ -11,11 +11,6 @@ const Lineup = () => {
 
   return (
       <div className={styles.cards_wrapper}>
-      {/* <CardBox/>
-      <CardBox/>
-      <CardBox/>
-      <CardBox/>
-      <CardBox/> */}
       {ads.map(ad => <CardBox key={ad._id} {...ad}/> )}
       </div>
   );
