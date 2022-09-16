@@ -61,7 +61,7 @@ exports.deleteAds = async (req, res) => {
 
 exports.putAds = async (req, res) => {
   const { title, description, date, price, location, user, phone } = req.body;
-
+  console.log('body', req.body);
   try {
     const ad = await Ads.findById(req.params.id);
     if(ad) {

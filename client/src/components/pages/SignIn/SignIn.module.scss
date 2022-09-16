@@ -1,0 +1,25 @@
+label {
+  display: block;
+}
+
+.container, .form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  margin-bottom: 25px !important;
+}
+
+input {
+  border-radius: 3px;
+  border: none;
+  margin-bottom: 10px !important;
+}
+button {
+  margin-top: 25px !important;
+  text-align: center;
+  display: block;
+}

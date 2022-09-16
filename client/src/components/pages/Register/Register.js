@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { API_URL } from '../../../config';
 import styles from './Register.module.scss';
 import { Alert } from 'react-bootstrap'
-// import '../../../App.scss';
+
 
 
 const Register = () => {
@@ -28,21 +28,23 @@ const Register = () => {
       method: 'POST',
       body: fd
     }
-    setTimeout(() => fetch(API_URL + '/auth/register', options)
+    console.log('ABCD');
+    fetch(API_URL + '/auth/register', options)
       .then(res => {
+        console.log('aaa')
         if (res.status === 201) {
           setStatus(null)
         }
-      }), 2000);
+      });
   }
 
   return (
     <>
       <div className={styles.container}>
-        {/* <Alert variant="danger">
+        <Alert variant="danger">
           <Alert.Heading>Something went wrong</Alert.Heading>
           <p>Unexpected error... Try again!</p>
-        </Alert> */}
+        </Alert>
 
         {status === 'loading' ? <div className={styles.loader}></div> : null}
 
@@ -56,7 +58,7 @@ const Register = () => {
           <label>
             Password
           </label>
-          <input type="text" value={login} onChange={e => setLogin(e.target.value)} placeholder="Enter Login" />
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Enter Password" />
 
           <label>
             Phone number
