@@ -5,7 +5,7 @@
   border: 1px solid #aaa;
   border-radius: 5px;
   width: 250px;
-  margin-bottom: 20px;
+  margin: 25px;
 };
 
 .img_wrapper {
@@ -68,3 +68,11 @@ img {
   }
 }
 
+@media (max-width: 617px){
+	.card_wrapper {
+width: 100%;
+  }
+  .img_wrapper {
+  height: 300px;
+};
+}

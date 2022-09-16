@@ -28,6 +28,8 @@ a .icon {
 
 .navigation {
   width: 250px;
+  display: flex;
+  justify-content: center;
 };
 
 .ulNav{
@@ -37,6 +39,7 @@ a .icon {
   font-weight: bold;
   letter-spacing: 1.5px;
   list-style: none;
+  margin: 0;
 };
 
 a {
