@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { API_URL } from '../../../config';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../../redux/usersRedux';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const SignIn = () => {
@@ -12,6 +12,7 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +31,7 @@ const SignIn = () => {
         if (res.status === 200) {
           setStatus('success');
           dispatch(logIn({ login }));
-          setTimeout(()=> Navigate('/'), 2000)
+          setTimeout(()=> navigate('/'), 2000)
         } else if (res.status === 400) {
           setStatus('clientError');
         } else {
