@@ -16,7 +16,7 @@ const NavBar = () => {
         <div className={style.navigation}>
           <ul className={style.ulNav}>
             <li><NavLink className={({ isActive }) => isActive ? style.linkActive : undefined} to="/">Home</NavLink></li>
-            {user && <li><NavLink className={({ isActive }) => isActive ? style.linkActive : undefined} to="/addnotice">New notice</NavLink></li>}
+            {user && <li><NavLink className={({ isActive }) => isActive ? style.linkActive : undefined} to="/profile">Profile</NavLink></li>}
             {!user ? <li><NavLink className={({ isActive }) => isActive ? style.linkActive : undefined} to="/signin">Sign in</NavLink></li> : <li><NavLink className={({ isActive }) => isActive ? style.linkActive : undefined} to="/logout">Log out</NavLink></li> }
             {!user && <li><NavLink className={({ isActive }) => isActive ? style.linkActive : undefined} to="/register">Register</NavLink></li>}
           </ul>

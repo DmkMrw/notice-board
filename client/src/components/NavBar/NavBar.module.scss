@@ -27,7 +27,7 @@ a .icon {
 };
 
 .navigation {
-  width: 250px;
+  width: 350px;
   display: flex;
   justify-content: center;
 };
@@ -37,6 +37,7 @@ a .icon {
   display: flex;
   justify-content: space-between;
   font-weight: bold;
+  font-size: 18px;
   letter-spacing: 1.5px;
   list-style: none;
   margin: 0;
@@ -45,6 +46,9 @@ a .icon {
 a {
   text-decoration: none;
   color: $color-light;
+  &:hover {
+    color: $color-warning;
+  }
 };
 
 .linkActive {

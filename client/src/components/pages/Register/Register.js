@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { API_URL } from '../../../config';
 import styles from './Register.module.scss';
-import { Alert, Spinner } from 'react-bootstrap'
-
+import { Alert, Spinner } from 'react-bootstrap';
 
 
 const Register = () => {
