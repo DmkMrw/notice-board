@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 const NavBar = () => {
 
   const user = useSelector(getUser);
-  console.log('user', user);
 
   return (
     <div className={style.navBar}>

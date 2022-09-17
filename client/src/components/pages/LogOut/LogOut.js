@@ -2,13 +2,19 @@ import { API_URL } from '../../../config';
 import { logOut } from '../../../redux/usersRedux';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Alert } from 'react-bootstrap'
+import styles from './LogOut.module.scss';
+
 
 
 const LogOut = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [status, setStatus] = useState(null); //'success'
+
 
   useEffect(() => {
     const options = {
@@ -19,13 +25,19 @@ const LogOut = () => {
       .then(() => {
         dispatch(logOut());
       });
-    setTimeout(() => navigate('/'), 2000);
+    setStatus('success')
+    setTimeout(() => navigate('/'), 2500);
   }, [dispatch]);
 
   return (
-    <>
-      You are currently logged out
-    </>
+    <div className={styles.container}>
+      {status === 'success' && (
+        <Alert variant='success'>
+          <Alert.Heading>Success!</Alert.Heading>
+          <p>You have been successfully logged out! See You next time!</p>
+        </Alert>
+      )}
+    </div>
   );
 }
 

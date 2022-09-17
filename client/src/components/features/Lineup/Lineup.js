@@ -7,8 +7,6 @@ const Lineup = () => {
 
   const ads = useSelector(getAllAds);
 
-  console.log('ads', ads);
-
   return (
     <div className={styles.cards_wrapper}>
     {ads.map(ad => <CardBox key={ad._id} {...ad}/> )}
