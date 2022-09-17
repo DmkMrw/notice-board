@@ -7,7 +7,7 @@ const Auth = require('../controllers/auth.controller');
 
 router.post('/register', imageUpload.single('avatar'), Auth.register);
 router.post('/login', Auth.login);
-router.delete('/logout', authMiddleware, Auth.logout);
+router.delete('/logout', Auth.logout);
 router.get('/user', authMiddleware, Auth.getUser)
 
 module.exports = router;

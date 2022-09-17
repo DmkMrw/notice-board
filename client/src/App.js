@@ -12,6 +12,7 @@ import AdPage from './components/pages/AdPage/AdPage';
 import NotFound from './components/pages/NotFound/NotFound';
 import Register from './components/pages/Register/Register';
 import SignIn from './components/pages/SignIn/SignIn';
+import LogOut from './components/pages/LogOut/LogOut';
 
 
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/ad/:adId" element={<AdPage/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<SignIn/>} />
+          <Route path="/logout" element={<LogOut/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>

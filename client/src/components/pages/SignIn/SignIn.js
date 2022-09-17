@@ -4,13 +4,14 @@ import { API_URL } from '../../../config';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../../redux/usersRedux';
 import { useNavigate } from 'react-router-dom';
+import { Alert, Spinner} from 'react-bootstrap'
 
 
 const SignIn = () => {
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(null); // null, 'loading, 'success', 'serverError', 'clientError'
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,27 +32,47 @@ const SignIn = () => {
         if (res.status === 200) {
           setStatus('success');
           dispatch(logIn({ login }));
-          setTimeout(()=> navigate('/'), 2000)
+          setTimeout(() => navigate('/'), 2000)
         } else if (res.status === 400) {
           setStatus('clientError');
         } else {
           setStatus('serverError');
-        }
+        };
       })
       .catch(err => {
         setStatus('serverError')
       });
-  }
+  };
 
   return (
     <>
         <div className={styles.container}>
-        {/* <Alert variant="danger">
-          <Alert.Heading>Something went wrong</Alert.Heading>
-          <p>Unexpected error... Try again!</p>
-        </Alert> */}
+        {status === 'success' && (
+          <Alert variant='success'>
+            <Alert.Heading>Success!</Alert.Heading>
+            <p>You have been successfully logged in!</p>
+          </Alert>
+        )}
 
-        {/* {status === 'loading' ? <div className={styles.loader}></div> : null} */}
+        {status === 'serverError' && (
+          <Alert variant='danger'>
+            <Alert.Heading>Something went wrong...</Alert.Heading>
+            <p>Unexpected error.. Please try again!</p>
+          </Alert>
+        )}
+
+        {status === 'clientError' && (
+          <Alert variant='danger'>
+            <Alert.Heading>Incorrect data</Alert.Heading>
+            <p>Login or password are incorrect.</p>
+          </Alert>
+        )}
+
+        {status === 'loading' && (
+          <Spinner animation='border' role='status' className='d-block mx-auto'>
+            <span className='visually-hidden'>Loading...</span>
+          </Spinner>
+        )}
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <h1>Sign in</h1>
