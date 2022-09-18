@@ -1,5 +1,7 @@
 /* SELECTORS */
 export const getUserData = ({ user }) => user;
+// export const getUserByLogin = (state, login) => state.user.filter(user => user.login === login )
+// export const getUserByLogin = (state, userId) => state.user.find((us) => us._id === userId);
 
 /* ACTIONS */
 

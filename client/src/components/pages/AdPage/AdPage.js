@@ -8,12 +8,21 @@ import { API_URL } from '../../../config';
 import { useState } from "react";
 import ModalDelete from "../../features/ModalDelete/ModalDelete";
 import { useNavigate } from "react-router-dom";
+import { getUserByLogin } from "../../../redux/userRedux";
+import { getUser } from '../../../redux/usersRedux';
+
+
 
 const AdPage = () => {
 
   const { adId } = useParams();
   const adData = useSelector(state => getAdById(state, adId));
   const navigate = useNavigate();
+
+  const user = useSelector(getUser)
+
+  // const userSelector = useSelector(state => getUserByLogin(state, adData.login))
+  // console.log('user', userSelector);
 
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
@@ -28,7 +37,11 @@ const AdPage = () => {
     navigate('/')
   }
 
-    if (showModal)
+      fetch(API_URL + '/auth/user/'+adData.user)
+      .then((res) => res.json())
+        .then((user) => console.log('userAvatar', user.avatar));
+
+  if (showModal) {
     return (
       <ModalDelete
         showModal={showModal}
@@ -36,6 +49,7 @@ const AdPage = () => {
         handleRemove={handleDelete}
       />
     );
+  };
 
   return (
     <div className={styles.container}>
@@ -49,15 +63,16 @@ const AdPage = () => {
           <span className={styles.location}>Location: <span>{adData.location}</span></span>
           <span>Phone: {adData.phone}</span>
           <div className={styles.author}>
-            <p>Author: {adData.user}</p>
             <span>Published date: {adData.date}</span>
-            <p>AVATAR</p>
+            <p>Author: {adData.user}</p>
           </div>
           <span className={styles.price}>Price: ${adData.price}</span>
           <Link to={'/'}>
             <button className={styles.button}>Back</button>
           </Link>
+          {user !== null && user.login === adData.user &&
             <button className={styles.button_delete} onClick={handleShow}>DELETE</button>
+          }
         </div>
       </div>
     </div>

@@ -1,10 +1,13 @@
 import { API_URL } from '../../../config';
 import styles from './AddAd.module.scss';
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
-
+import { getUserData } from "../../../redux/userRedux";
 
 const AddAd = () => {
+  const data = useSelector(getUserData);
+  const { login, phoneNumber } = data
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -12,8 +15,11 @@ const AddAd = () => {
   const [image, setImage] = useState('');
   const [price, setPrice] = useState('');
   const [location, setLocation] = useState('');
-  const [user, setUser] = useState('');
-  const [phone, setPhone] = useState('');
+  const [user, setUser] = useState(login);
+  const [phone, setPhone] = useState(phoneNumber);
+
+
+  // console.log('data', data);
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -81,14 +87,14 @@ const AddAd = () => {
           <input type="text" value={location} onChange={e => setLocation(e.target.value)} placeholder="Enter Location" />
 
           <label>
-            User
+            Author
           </label>
-          <input type="text" value={user} onChange={e => setUser(e.target.value)} placeholder="Enter username" />
+          <input type="text" disabled defaultValue={login}  placeholder="Enter username" />
 
           <label>
             Phone
           </label>
-          <input type="text" value={phone} onChange={e => setPhone(e.target.value)} placeholder="Enter Phone Number"/>
+          <input type="text" disabled defaultValue={phoneNumber}  placeholder="Enter Phone Number"/>
 
           <label>
             Image

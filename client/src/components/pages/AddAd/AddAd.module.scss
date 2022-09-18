@@ -3,7 +3,7 @@
 .container {
 display: flex;
 justify-content: center;
-}
+};
 
 .ad_wrapper {
   background-color: darken($color-dark, 3%);
@@ -19,11 +19,21 @@ justify-content: center;
   line-height: 20px;
   padding: 5px 10px;
   border-radius: 5px;
-}
+};
 
-.button{
+.button {
+  background-color: $color-button;
   margin: 0 auto;
-}
-
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-button-hover;
+  };
+};
 
 
