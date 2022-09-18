@@ -5,20 +5,37 @@ import { IMGS_URL } from '../../../config';
 import { Link } from 'react-router-dom';
 import styles from './AdPage.module.scss';
 import { API_URL } from '../../../config';
+import { useState } from "react";
+import ModalDelete from "../../features/ModalDelete/ModalDelete";
+import { useNavigate } from "react-router-dom";
 
 const AdPage = () => {
 
-  const { adId } = useParams()
-  const adData = useSelector(state => getAdById(state, adId))
+  const { adId } = useParams();
+  const adData = useSelector(state => getAdById(state, adId));
+  const navigate = useNavigate();
+
+  const [showModal, setShowModal] = useState(false);
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
   const handleDelete = (e) => {
     e.preventDefault()
-
       const options = {
     method: 'DELETE',
     };
-    fetch(API_URL + '/api/ads/'+adId, options)
+    fetch(API_URL + '/api/ads/' + adId, options);
+    navigate('/')
   }
+
+    if (showModal)
+    return (
+      <ModalDelete
+        showModal={showModal}
+        handleClose={handleClose}
+        handleRemove={handleDelete}
+      />
+    );
 
   return (
     <div className={styles.container}>
@@ -40,7 +57,7 @@ const AdPage = () => {
           <Link to={'/'}>
             <button className={styles.button}>Back</button>
           </Link>
-            <button onClick={handleDelete}>DELETE</button>
+            <button className={styles.button_delete} onClick={handleShow}>DELETE</button>
         </div>
       </div>
     </div>
