@@ -4,14 +4,24 @@ import { getAdById } from "../../../redux/adsRedux";
 import { IMGS_URL } from '../../../config';
 import { Link } from 'react-router-dom';
 import styles from './AdPage.module.scss';
+import { API_URL } from '../../../config';
 
 const AdPage = () => {
 
   const { adId } = useParams()
   const adData = useSelector(state => getAdById(state, adId))
 
+  const handleDelete = (e) => {
+    e.preventDefault()
+
+      const options = {
+    method: 'DELETE',
+    };
+    fetch(API_URL + '/api/ads/'+adId, options)
+  }
+
   return (
-    <><div className={styles.container}>
+    <div className={styles.container}>
       <div className={styles.card_wrapper}>
         <div className={styles.img_wrapper}>
           <img src={IMGS_URL + adData.image} alt="" />
@@ -30,14 +40,11 @@ const AdPage = () => {
           <Link to={'/'}>
             <button className={styles.button}>Back</button>
           </Link>
+            <button onClick={handleDelete}>DELETE</button>
         </div>
       </div>
     </div>
-
-    </>
-
   );
 }
 
 export default AdPage;
-<h1>to je strona produktu</h1>

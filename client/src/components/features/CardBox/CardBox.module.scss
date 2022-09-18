@@ -6,6 +6,7 @@
   border-radius: 5px;
   width: 250px;
   margin: 25px;
+  height: 500px;
 };
 
 .img_wrapper {
@@ -25,6 +26,10 @@ img {
   margin: 25px;
   position: relative;
   overflow: hidden;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 };
 
 .title {
