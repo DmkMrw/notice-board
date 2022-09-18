@@ -1,15 +1,24 @@
 import { useSelector } from "react-redux";
-import { getUser } from "../../../redux/usersRedux";
+import { IMGS_URL } from '../../../config';
+import { getUserData } from "../../../redux/userRedux";
+import styles from './Profile.module.scss';
+
 
 const Profile = () => {
 
-  const userInfo = useSelector(getUser)
+const data = useSelector(getUserData);
+const {login, phoneNumber, avatar} = data
 
   return (
-    <>
-      <h1>Profile info</h1>
-      <h2>Login: {userInfo.login}</h2>
-    </>
+    <div className={styles.container}>
+      <p className={styles.title}>Profile info</p>
+      <div className={styles.avatar}>
+        <img src={IMGS_URL + avatar} alt="your_avatar" />
+      </div>
+      <p className={styles.login}>Hello <span className={styles.user_data}>{login}!</span></p>
+      <p className={styles.phone}>Phone number: <span className={styles.user_data}>{phoneNumber}</span></p>
+    </div>
+
 
   );
 }

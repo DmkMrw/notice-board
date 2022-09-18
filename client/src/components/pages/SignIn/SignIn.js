@@ -4,7 +4,8 @@ import { API_URL } from '../../../config';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../../redux/usersRedux';
 import { useNavigate } from 'react-router-dom';
-import { Alert, Spinner} from 'react-bootstrap'
+import { Alert, Spinner } from 'react-bootstrap';
+import { addUserInfo } from "../../../redux/userRedux";
 
 
 const SignIn = () => {
@@ -42,6 +43,10 @@ const SignIn = () => {
       .catch(err => {
         setStatus('serverError')
       });
+
+    fetch(API_URL + '/auth/user/'+login)
+      .then((res) => res.json())
+      .then((user) => dispatch(addUserInfo( user )));
   };
 
   return (
