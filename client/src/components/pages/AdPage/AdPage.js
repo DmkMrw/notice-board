@@ -76,6 +76,9 @@ const AdPage = () => {
             <p>Author: {adData.user}</p>
           </div>
           <span className={styles.price}>Price: ${adData.price}</span>
+          {user !== null && user.login === adData.user && <Link to={'/ad/edit/' + adId}>
+            <button className={styles.button_edit}>Edit</button>
+          </Link>}
           <Link to={'/'}>
             <button className={styles.button}>Back</button>
           </Link>
