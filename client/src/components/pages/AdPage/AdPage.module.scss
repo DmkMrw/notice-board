@@ -90,6 +90,11 @@ img {
   cursor: pointer;
   &:hover {
     background-color: $color-warning-hover;
-  }
-}
+  };
+};
 
+.avatar {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+};

@@ -2,12 +2,14 @@ import { API_URL } from '../../../config';
 import styles from './AddAd.module.scss';
 import { useState } from "react";
 import { useSelector } from "react-redux";
-
+import { Alert, Spinner } from 'react-bootstrap';
 import { getUserData } from "../../../redux/userRedux";
+import { useNavigate } from 'react-router-dom';
 
 const AddAd = () => {
   const data = useSelector(getUserData);
   const { login, phoneNumber } = data
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -17,9 +19,10 @@ const AddAd = () => {
   const [location, setLocation] = useState('');
   const [user, setUser] = useState(login);
   const [phone, setPhone] = useState(phoneNumber);
+  const [status, setStatus] = useState(null); // null, 'loading, 'success', 'serverError', 'clientError', 'loginError'
 
 
-  // console.log('data', data);
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -38,26 +41,49 @@ const AddAd = () => {
       method: 'POST',
       body: fd
     };
-
+    setStatus('loading');
     fetch(API_URL + '/api/ads', options)
-
-
-    console.log('title:', title,
-      'description:', description,
-      'date:', date,
-      'image:', image,
-      'price:', price,
-      'location:', location,
-      'user:', user,
-      'phoneNumber:', phone,
-    );
+      .then(res => {
+        if (res.status === 200) {
+          setStatus('success');
+          setTimeout(() => navigate('/'), 2000);
+        } else if (res.status === 400) {
+          setStatus('clientError');
+        } else {
+          setStatus('serverError');
+        }
+      });
   }
-
-
-
 
   return (
     <div className={styles.container}>
+      {status === 'success' && (
+          <Alert variant='success'>
+            <Alert.Heading>Success!</Alert.Heading>
+            <p>You have added an advertisement. Going back to home page</p>
+        </Alert>
+        )}
+
+        {status === 'serverError' && (
+          <Alert variant='danger'>
+            <Alert.Heading>Something went wrong...</Alert.Heading>
+            <p>Unexpected error.. Please try again!</p>
+          </Alert>
+        )}
+
+        {status === 'clientError' && (
+          <Alert variant='danger'>
+            <Alert.Heading>Not enough data</Alert.Heading>
+            <p>You have to fill all the fields.</p>
+          </Alert>
+        )}
+
+        {status === 'loading' && (
+          <Spinner animation='border' role='status' className='d-block mx-auto'>
+            <span className='visually-hidden'>Loading...</span>
+          </Spinner>
+)
+}
       <div className={styles.ad_wrapper}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <h1>Add new advertisement</h1>

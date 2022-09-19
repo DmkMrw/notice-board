@@ -18,6 +18,7 @@ const AdPage = () => {
   const { adId } = useParams();
   const adData = useSelector(state => getAdById(state, adId));
   const navigate = useNavigate();
+  const [avatar, setAvatar] = useState();
 
   const user = useSelector(getUser)
 
@@ -37,9 +38,16 @@ const AdPage = () => {
     navigate('/')
   }
 
-      fetch(API_URL + '/auth/user/'+adData.user)
-      .then((res) => res.json())
-        .then((user) => console.log('userAvatar', user.avatar));
+  fetch(API_URL + '/auth/user/' + adData.user)
+    .then(res => {
+      if (res.ok) {
+        return res
+    }
+      throw Error ('this user has no avatar')
+      })
+    .then((res) => res.json())
+    .then((user) => setAvatar(user.avatar))
+    .catch(err => console.log(err))
 
   if (showModal) {
     return (
@@ -55,7 +63,7 @@ const AdPage = () => {
     <div className={styles.container}>
       <div className={styles.card_wrapper}>
         <div className={styles.img_wrapper}>
-          <img src={IMGS_URL + adData.image} alt="" />
+          <img src={IMGS_URL + adData.image} alt="product_image" />
         </div>
         <div className={styles.description_all}>
           <span className={styles.title}>{adData.title}</span>
@@ -63,7 +71,8 @@ const AdPage = () => {
           <span className={styles.location}>Location: <span>{adData.location}</span></span>
           <span>Phone: {adData.phone}</span>
           <div className={styles.author}>
-            <span>Published date: {adData.date}</span>
+            <p>Published date: {adData.date}</p>
+            {avatar && <img className={styles.avatar} src={IMGS_URL + avatar} alt="author_avatar" />}
             <p>Author: {adData.user}</p>
           </div>
           <span className={styles.price}>Price: ${adData.price}</span>
