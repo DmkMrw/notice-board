@@ -2,11 +2,11 @@
 
 .card_wrapper {
   background-color: darken($color-dark, 3%);
-  border: 1px solid #aaa;
   border-radius: 5px;
   width: 250px;
   margin: 25px;
   height: 500px;
+  box-shadow: 33px 30px 46px -16px rgb(7, 7, 7);
 };
 
 .img_wrapper {

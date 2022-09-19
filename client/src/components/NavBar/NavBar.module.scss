@@ -4,7 +4,9 @@
 .navBar {
   width: 100%;
   background-color: darken($color-dark, 3%);
-  height: 50px;
+  height: auto;
+  padding: 0 20px;
+  border-bottom: 1px solid $color-border-nav;
 };
 
 .main {
@@ -53,4 +55,14 @@ a {
 
 .linkActive {
   color: $color-warning;
+};
+
+@media (max-width: 664px){
+  .container {
+    display: flex;
+    flex-direction: column;
+  };
+  .navBar {
+    padding-bottom: 5px;
+  };
 };
