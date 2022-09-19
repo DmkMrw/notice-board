@@ -55,7 +55,7 @@ img {
   bottom: 6px;
 };
 
-.button {
+.button, .button_edit {
   background-color: $color-button;
   position: absolute;
   bottom:0;
@@ -71,7 +71,11 @@ img {
   cursor: pointer;
   &:hover {
     background-color: $color-button-hover;
-  }
+  };
+};
+
+.button_edit {
+  bottom: 79px;
 }
 
 .button_delete{
