@@ -1,5 +1,15 @@
+@import '../../../styles/typography.scss';
+
 .container {
   width: 50%;
   margin: 0 auto;
   text-align: center;
+}
+
+.input {
+  height: 34px;
+  margin-left: 5px;
+  &:active, &:focus{
+    outline: none;
+  }
 }

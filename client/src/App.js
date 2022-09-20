@@ -17,6 +17,7 @@ import LogOut from './components/pages/LogOut/LogOut';
 import Profile from './components/pages/Profile/Profile';
 import AddAd from './components/pages/AddAd/AddAd';
 import EditAdd from './components/pages/EditAdd/EditAdd';
+import SearchResult from './components/pages/SearchResult/SearchResult';
 
 
 
@@ -38,7 +39,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<SignIn/>} />
           <Route path="/profile" element={<Profile/>} />
-          <Route path="/logout" element={<LogOut/>} />
+          <Route path="/logout" element={<LogOut />} />
+          <Route path="/searchresult" element={<SearchResult />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>

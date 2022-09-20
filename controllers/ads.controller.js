@@ -96,3 +96,14 @@ exports.getAdsBySearchPhrase = async (req, res) => {
     res.status(500).json({ message: err });
   }
 };
+
+// exports.getAdsBySearchPhrase = async (req, res, next) => {
+//   const { searchPhrase } = req.params;
+//   try {
+//     const ad = await Ads.find({ $text: { $search: searchPhrase } });
+//     if (!ad) return res.status(404).json({ message: 'Ad not found' });
+//     else res.json(ad);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// };
