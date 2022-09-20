@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadAdsRequest } from './redux/adsRedux';
+import Footer from './components/Footer/Footer';
 
 
 // import routes
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
+      <Footer/>
     </>
   );
 }
