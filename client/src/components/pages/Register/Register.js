@@ -80,8 +80,6 @@ const Register = () => {
           </Spinner>
         )}
 
-        {status === 'loading' ? <div className={styles.loader}></div> : null}
-
         <form className={styles.form} onSubmit={handleSubmit}>
           <h1>Sign up</h1>
           <label>
@@ -97,13 +95,13 @@ const Register = () => {
           <label>
             Phone number
           </label>
-          <input type="tel" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)}id="phone" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" />
+          <input type="tel" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)}id="phone" placeholder="Enter phone number" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" />
 
           <label>
             Avatar
           </label>
           <input type="file" onChange={e => setAvatar(e.target.files[0])} />
-          <button>Submit</button>
+          <button className={styles.button}>Submit</button>
         </form>
       </div>
     </>

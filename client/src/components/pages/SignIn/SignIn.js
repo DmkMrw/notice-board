@@ -90,7 +90,7 @@ const SignIn = () => {
             Password
           </label>
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Enter Password" />
-          <button>Submit</button>
+          <button className={styles.button}>Submit</button>
         </form>
       </div>
     </>

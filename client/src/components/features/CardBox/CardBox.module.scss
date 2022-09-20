@@ -79,7 +79,10 @@ text-align: center;
 }
 @media (max-width: 617px){
 	.card_wrapper {
-width: 100%;
+  width: 100%;
+  };
+  .description_all{
+    height: 150px;
   }
   .img_wrapper {
   height: 300px;
