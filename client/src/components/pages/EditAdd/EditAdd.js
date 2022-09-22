@@ -105,7 +105,8 @@ const EditAdd = () => {
           <label>
             Title
           </label>
-          <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Enter Title" />
+          {/* <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Enter Title" /> */}
+          <textarea className={styles.textarea_title} type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Enter Title"/>
 
           <label>
             Description
@@ -115,7 +116,7 @@ const EditAdd = () => {
           <label>
             Date
           </label>
-          <input type="text" value={date} onChange={e => setDate(e.target.value)} placeholder="Enter Date" />
+          <input type="date" value={date} onChange={e => setDate(e.target.value)} placeholder="Enter Date" />
 
           <label>
             Price

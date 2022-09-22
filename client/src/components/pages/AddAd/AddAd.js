@@ -6,6 +6,7 @@ import { Alert, Spinner } from 'react-bootstrap';
 import { getUserData } from "../../../redux/userRedux";
 import { useNavigate } from 'react-router-dom';
 
+
 const AddAd = () => {
   const data = useSelector(getUserData);
   const { login, phoneNumber } = data
@@ -100,7 +101,7 @@ const AddAd = () => {
           <label>
             Date
           </label>
-          <input type="text" value={date} onChange={e => setDate(e.target.value)} placeholder="Enter Date" />
+          <input type="date" value={date} onChange={e => setDate(e.target.value)} placeholder="Enter Date" />
 
           <label>
             Price

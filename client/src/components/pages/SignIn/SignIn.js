@@ -81,6 +81,7 @@ const SignIn = () => {
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <h1>Sign in</h1>
+          <small>For demo purpose you can just sign in with login: JohnDoe and password: test1.</small>
           <label>
             Login
           </label>

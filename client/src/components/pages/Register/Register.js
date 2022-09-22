@@ -15,7 +15,6 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('loading')
-    console.log(login, password, phoneNumber, avatar);
 
     const fd = new FormData();
     fd.append('login', login);
@@ -95,7 +94,8 @@ const Register = () => {
           <label>
             Phone number
           </label>
-          <input type="tel" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)}id="phone" placeholder="Enter phone number" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" />
+          <small>Format: 501502503</small>
+          <input type="tel" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} id="phone" placeholder="Enter phone number" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" />
 
           <label>
             Avatar
