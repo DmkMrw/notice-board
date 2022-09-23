@@ -10,7 +10,7 @@ const adsRoutes = require('./routes/ads.routes');
 const authRoutes = require('./routes/auth.routes');
 
 const app = express();
-
+process.env.NODE_ENV = 'production';
 const NODE_ENV = process.env.NODE_ENV;
 let dbUri = '';
 
@@ -59,8 +59,12 @@ db.once('open', () => {
 });
 db.on('error', err => console.log('Error ' + err));
 
-const server = app.listen('8000', () => {
+const server = app.listen(process.env.PORT || 8000, () => {
   console.log('Server is running on port: 8000');
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
 
 module.exports = server;
