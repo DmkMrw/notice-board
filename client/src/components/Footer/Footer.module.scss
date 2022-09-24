@@ -1,0 +1,15 @@
+@import '../../styles/typography.scss';
+@import '../../styles/settings.scss';
+
+.footer {
+  width: 100%;
+  background-color: darken($color-dark, 3%);
+  height: auto;
+  padding: 5px 0px;
+  border-top: 1px solid $color-border-nav;
+  text-align: center;
+};
+
+// .span_footer {
+//   padding: 10px 0;
+// }

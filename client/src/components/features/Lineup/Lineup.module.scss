@@ -1,0 +1,11 @@
+.cards_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+};
+
+@media (max-width: 1220px){
+	.cards_wrapper {
+    display: flex;
+    justify-content: center;
+  };
+};

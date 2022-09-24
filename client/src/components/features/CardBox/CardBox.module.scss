@@ -1,0 +1,90 @@
+@import '../../../styles/settings.scss';
+
+.card_wrapper {
+  background-color: darken($color-dark, 3%);
+  border-radius: 5px;
+  width: 250px;
+  margin: 25px;
+  height: 500px;
+  box-shadow: 33px 30px 46px -16px rgb(7, 7, 7);
+};
+
+.img_wrapper {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+};
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+};
+
+.description_all {
+  margin: 25px;
+  position: relative;
+  overflow: hidden;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+};
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+};
+
+.description {
+  line-height: 20px;
+};
+
+.location {
+  display: block;
+  margin-bottom: 20px;
+  font-weight: bold;
+  span {
+    font-weight: normal;
+  }
+};
+
+.price {
+  font-size: 20px;
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+};
+
+.button {
+  background-color: $color-button;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-button-hover;
+  }
+}
+
+.logged_info{
+color: $color-warning;
+text-align: center;
+}
+@media (max-width: 617px){
+	.card_wrapper {
+  width: 100%;
+  };
+  .description_all{
+    height: 150px;
+  }
+  .img_wrapper {
+  height: 300px;
+};
+}

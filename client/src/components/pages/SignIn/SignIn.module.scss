@@ -1,0 +1,26 @@
+@import '../../../styles/typography.scss';
+
+label {
+  display: block;
+};
+
+.container, .form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+};
+
+h1 {
+  margin-bottom: 15px !important;
+};
+
+input {
+  border-radius: 3px;
+  border: none;
+  margin-bottom: 10px !important;
+};
+
+small {
+  margin-bottom: 10px;
+}
