@@ -95,7 +95,6 @@ const SignIn = () => {
         </form>
       </div>
     </>
-
   );
 }
 

@@ -8,9 +8,7 @@ import { API_URL } from '../../../config';
 import { useState } from "react";
 import ModalDelete from "../../features/ModalDelete/ModalDelete";
 import { useNavigate } from "react-router-dom";
-import { getUserByLogin } from "../../../redux/userRedux";
 import { getUser } from '../../../redux/usersRedux';
-
 
 
 const AdPage = () => {
@@ -21,9 +19,6 @@ const AdPage = () => {
   const [avatar, setAvatar] = useState();
 
   const user = useSelector(getUser)
-
-  // const userSelector = useSelector(state => getUserByLogin(state, adData.login))
-  // console.log('user', userSelector);
 
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);

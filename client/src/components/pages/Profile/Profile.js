@@ -18,8 +18,6 @@ const {login, phoneNumber, avatar} = data
       <p className={styles.login}>Hello <span className={styles.user_data}>{login}!</span></p>
       <p className={styles.phone}>Phone number: <span className={styles.user_data}>{phoneNumber}</span></p>
     </div>
-
-
   );
 }
 

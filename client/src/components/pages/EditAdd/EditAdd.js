@@ -105,7 +105,6 @@ const EditAdd = () => {
           <label>
             Title
           </label>
-          {/* <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Enter Title" /> */}
           <textarea className={styles.textarea_title} type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Enter Title"/>
 
           <label>
