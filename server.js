@@ -10,7 +10,7 @@ const adsRoutes = require('./routes/ads.routes');
 const authRoutes = require('./routes/auth.routes');
 
 const app = express();
-process.env.NODE_ENV = 'production';
+// process.env.NODE_ENV = 'production';
 const NODE_ENV = process.env.NODE_ENV;
 let dbUri = '';
 
