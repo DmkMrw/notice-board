@@ -9,6 +9,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
     "font-awesome": "^4.7.0",
+    "node": "^20.5.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-datepicker": "^4.8.0",
@@ -48,8 +49,8 @@
     ]
   },
   "browser": {
-  "fs": false,
-  "path": false,
-  "os": false
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
